@@ -5,3 +5,9 @@
 <% if current_user.id != @user.id %>
   <%= link_to "#{@user.name}さんとチャットする", chat_path(@user.id) %>
 <% end %>
+
+<% @users.each do |user| %>
+  <%= link_to chat_path(user.id) do %>
+  <%= user.email %>さんとチャットする
+  <% end %>
+<% end %>
