@@ -1,6 +1,6 @@
 class ChatsController < ApplicationController
     def show
-    @user = User.find(params[:id])  
+    @user = current_user
     rooms = current_user.user_rooms.pluck(:room_id)  
     user_room = UserRoom.find_by(user_id: @user.id, room_id: rooms)  
 
@@ -18,7 +18,6 @@ class ChatsController < ApplicationController
 
     def create
     @chat = Chat.new(chat_params)
-
     respond_to do |format|
       if @chat.save
         format.html { redirect_to @chat } 
